@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Market Cap</th>
+        <th>24h Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crypto of cryptos">
+        <td>{{ crypto.rank }}</td>
+        <td (click)="onSubmit(crypto.uuid)" class="onSubmit">{{ crypto.name }}</td>
+        <td>${{ crypto.price | number: '1.2-2' }}</td>
+        <td>${{ crypto.marketCap | number }}</td>
+        <td [ngClass]="{'positive': crypto.change > 0, 'negative': crypto.change < 0}">
+          {{ crypto.change | number: '1.2-2' }}%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2024 Klinton Mita</p>
+  <p><a href="#">Impressum</a></p>
+</footer>

@@ -1,0 +1,26 @@
+<div class="crypto-details-container" *ngIf="cryptoDetails; else loading">
+  <div class="crypto-details">
+    <h2 class="crypto-title">{{ cryptoDetails?.name }} Details</h2>
+
+    <div class="crypto-info">
+      <p><strong>Rank:</strong> {{ cryptoDetails?.rank }}</p>
+      <p><strong>Price:</strong> ${{ cryptoDetails?.price | number:'1.2-2' }}</p>
+      <p><strong>Market Cap:</strong> ${{ cryptoDetails?.marketCap | number }}</p>
+      <p><strong>24h Change:</strong> {{ cryptoDetails?.change | number:'1.2-2' }}%</p>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <button class="back-button" (click)="goBack()">Back to Crypto List</button>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p class="loading-message">Loading crypto details...</p>
+</ng-template>
+
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
